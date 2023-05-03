@@ -29,6 +29,11 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                 }
             }
         });
+        for(Juez juez : jueces){
+            listaJueces.setAdapter((SpinnerAdapter) juez);
+            System.out.println(juez.getNombreCompleto());
+
+        }
 
     }
 }
