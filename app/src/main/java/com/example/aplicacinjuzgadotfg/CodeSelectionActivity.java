@@ -15,10 +15,17 @@ public class CodeSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_code_selection);
         botonPersonas = findViewById(R.id.BT_ContinuarPersonas);
     }
+
+    /**
+     * Método que se ejecuta al pulsar el botón de continuar, se encarga de cargar la actividad
+     * de selección de personas
+     * @param view
+     */
     public void seleccionPersonas(View view){
         Intent intent = new Intent(this, PeopleSelectionActivity.class);
         if(botonPersonas.getText().toString().trim().length()>0){
         startActivity(intent);
+
         }
     }
 }

@@ -86,8 +86,8 @@
 
     <TextView
         android:id="@+id/FooterID"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="108dp"
         android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
