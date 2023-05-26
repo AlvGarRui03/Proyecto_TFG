@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class CodeSelectionActivity extends AppCompatActivity {
     private Button botonPersonas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +20,13 @@ public class CodeSelectionActivity extends AppCompatActivity {
     /**
      * Método que se ejecuta al pulsar el botón de continuar, se encarga de cargar la actividad
      * de selección de personas
+     *
      * @param view
      */
-    public void seleccionPersonas(View view){
+    public void seleccionPersonas(View view) {
         Intent intent = new Intent(this, PeopleSelectionActivity.class);
-        if(botonPersonas.getText().toString().trim().length()>0){
-        startActivity(intent);
+        if (botonPersonas.getText().toString().trim().length() > 0) {
+            startActivity(intent);
 
         }
     }
