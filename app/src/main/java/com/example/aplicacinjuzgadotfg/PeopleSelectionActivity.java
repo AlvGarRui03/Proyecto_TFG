@@ -30,21 +30,29 @@ import java.util.List;
 
 public class PeopleSelectionActivity extends AppCompatActivity {
     private FirebaseFirestore db;
-    private ArrayList<Juez> jueces;
-    private Spinner listaJueces;
-    private Thread hiloObtencionDatos = null;
     private ArrayList<String> nombresJueces;
+    private ArrayList<String> nombresImputados;
+    private ArrayList<String> nombresAbogados;
+    private Spinner listaJueces;
+    private Spinner listaImputados;
+    private Spinner listaAbogados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people_selection);
         listaJueces = findViewById(R.id.Spinner_Jueces);
-        jueces = new ArrayList<>();
+        listaImputados = findViewById(R.id.Spinner_Imputados);
+        listaAbogados = findViewById(R.id.Spinner_Abogado);
         nombresJueces = new ArrayList<>();
+        nombresImputados = new ArrayList<>();
+        nombresAbogados = new ArrayList<>();
         buscarDatos();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombresJueces);
-        listaJueces.setAdapter(adapter);
-
+        ArrayAdapter<String> adapterJueces = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nombresJueces);
+        listaJueces.setAdapter(adapterJueces);
+        ArrayAdapter<String> adapterImputados = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nombresImputados);
+        listaImputados.setAdapter(adapterImputados);
+        ArrayAdapter<String> adapterAbogados = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nombresAbogados);
+        listaAbogados.setAdapter(adapterAbogados);
 
         /*hiloObtencionDatos = new Thread(new Runnable() {
             @Override
@@ -69,8 +77,12 @@ public class PeopleSelectionActivity extends AppCompatActivity {
     }
     public void buscarDatos(){
         db = FirebaseFirestore.getInstance();
-        Log.e("TAG", "buscarDatos:" );
-        db.collection("/Juez").get()
+        buscarJueces();
+        buscarInputados();
+        buscarAbogados();
+    }
+    public void buscarJueces(){
+        db.collection("/Juez").orderBy("Nombre").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -83,15 +95,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                                 System.out.println(d.getString("Nombre"));
                                 Juez juez = new Juez(d.getId(), d.getString("Nombre"), d.getString("DNI"));
                                 System.out.println("ID: " + juez.getIdJuez() + " Nombre: " + juez.getNombreCompleto() + " DNI: " + juez.getDni());
-                                jueces.add(juez);
-                                System.out.println("Tamaño de la lista: " + jueces.size());
                                 nombresJueces.add(juez.getNombreCompleto());
-
-                                //Juez j = d.toObject(Juez.class);
-                               // Log.e("TAG", "onSuccess: " + j.getNombreCompleto() );
-                                /*System.out.println(j.getNombreCompleto());
-                                System.out.println(j.getDni());
-                                System.out.println(j.getIdJuez());*/
                             }
                         } else {
                             // if the snapshot is empty we are displaying a toast message.
@@ -100,24 +104,55 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                         }
                     }
                 });
-        /*db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    }
+    public void buscarInputados(){
+        db.collection("/Imputado").orderBy("Nombre").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.e("TAG", "onSuccess:" );
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            Log.e("TAG", "onSuccess: " + queryDocumentSnapshots.size() );
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Log.e("TAG","onSuccess: " + d.getId() + " => " + d.getData());
+                                System.out.println(d.getString("Nombre"));
+                                Imputado imputado = new Imputado (d.getId(), d.getString("Nombre"), d.getString("DNI"));
+                                System.out.println("ID: " + imputado.getIdImputado() + " Nombre: " + imputado.getNombre() + " DNI: " + imputado.getDNI());
+                                nombresImputados.add(imputado.getNombre());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            // if the snapshot is empty we are displaying a toast message.
+                            Log.e("TAG", "onSuccess: LIST EMPTY" );
+                            System.out.println("No data found in Database");
                         }
                     }
-                });*/
-
-
+                });
     }
-
+    public void buscarAbogados(){
+        db.collection("/Abogado").orderBy("Nombre").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.e("TAG", "onSuccess:" );
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            Log.e("TAG", "onSuccess: " + queryDocumentSnapshots.size() );
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Log.e("TAG","onSuccess: " + d.getId() + " => " + d.getData());
+                                System.out.println(d.getString("Nombre"));
+                                Abogado abogado = new Abogado (d.getId(), d.getString("Nombre"), d.getString("Tipo"),d.getString("DNI"));
+                                System.out.println("ID: " + abogado.getIdAbogado() + " Nombre: " + abogado.getNombre() + " DNI: " + abogado.getDNI() + " Tipo: " + abogado.getTipo());
+                                nombresAbogados.add(abogado.getNombre());
+                            }
+                        } else {
+                            // if the snapshot is empty we are displaying a toast message.
+                            Log.e("TAG", "onSuccess: LIST EMPTY" );
+                            System.out.println("No data found in Database");
+                        }
+                    }
+                });
+    }
 
 
     }
