@@ -28,15 +28,16 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline29"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/BT_AniadirJuez"
         app:layout_constraintTop_toTopOf="@+id/guideline28"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/BT_AniadirAbogado"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button_borders"
+        android:onClick="crearAbogado"
         app:layout_constraintBottom_toTopOf="@+id/guideline29"
         app:layout_constraintEnd_toStartOf="@+id/Spinner_Abogado"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,15 +67,16 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/BT_AniadirJuez"
         app:layout_constraintTop_toTopOf="@+id/guideline27"
         app:layout_constraintVertical_bias="0.393" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/BT_AniadirImputado"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button_borders"
+        android:onClick="crearImputado"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/Spinner_Imputados"
         app:layout_constraintHorizontal_bias="1.0"
@@ -132,15 +134,16 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/BT_AniadirJuez"
         app:layout_constraintTop_toTopOf="@+id/guideline26"
         app:layout_constraintVertical_bias="0.1" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/BT_AniadirJuez"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@drawable/button_borders"
+        android:onClick="crearJuez"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline26"

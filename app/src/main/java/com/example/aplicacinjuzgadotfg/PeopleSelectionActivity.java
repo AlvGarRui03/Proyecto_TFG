@@ -1,29 +1,18 @@
 package com.example.aplicacinjuzgadotfg;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,8 +107,8 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                                 Log.e("TAG","onSuccess: " + d.getId() + " => " + d.getData());
                                 System.out.println(d.getString("Nombre"));
                                 Imputado imputado = new Imputado (d.getId(), d.getString("Nombre"), d.getString("DNI"));
-                                System.out.println("ID: " + imputado.getIdImputado() + " Nombre: " + imputado.getNombre() + " DNI: " + imputado.getDNI());
-                                nombresImputados.add(imputado.getNombre());
+                                System.out.println("ID: " + imputado.getIdImputado() + " Nombre: " + imputado.getNombreCompleto() + " DNI: " + imputado.getDni());
+                                nombresImputados.add(imputado.getNombreCompleto());
                             }
                         } else {
                             // if the snapshot is empty we are displaying a toast message.
@@ -142,7 +131,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                                 Log.e("TAG","onSuccess: " + d.getId() + " => " + d.getData());
                                 System.out.println(d.getString("Nombre"));
                                 Abogado abogado = new Abogado (d.getId(), d.getString("Nombre"), d.getString("Tipo"),d.getString("DNI"));
-                                System.out.println("ID: " + abogado.getIdAbogado() + " Nombre: " + abogado.getNombre() + " DNI: " + abogado.getDNI() + " Tipo: " + abogado.getTipo());
+                                System.out.println("ID: " + abogado.getIdAbogado() + " Nombre: " + abogado.getNombre() + " DNI: " + abogado.getDni() + " Tipo: " + abogado.getTipo());
                                 nombresAbogados.add(abogado.getNombre());
                             }
                         } else {
@@ -153,8 +142,18 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
+    public void crearJuez(View view){
+        Intent intent = new Intent(this, JuezActivity.class);
+        startActivity(intent);
+    }
+    public void crearImputado(View view){
+        Intent intent = new Intent(this, ImputadoActivity.class);
+        startActivity(intent);
+    }
+    public void crearAbogado(View view){
+        Intent intent = new Intent(this, AbogadoActivity.class);
+        startActivity(intent);
+    }
     }
 
 
