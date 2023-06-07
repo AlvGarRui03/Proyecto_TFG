@@ -1,4 +1,4 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Vistas;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,6 +15,8 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.aplicacinjuzgadotfg.R;
+import com.example.aplicacinjuzgadotfg.Vistas.FinalActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -24,7 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

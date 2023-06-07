@@ -1,11 +1,10 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Vistas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,12 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aplicacinjuzgadotfg.Modelos.Imputado;
+import com.example.aplicacinjuzgadotfg.Modelos.Juez;
+import com.example.aplicacinjuzgadotfg.Modelos.Juicio;
+import com.example.aplicacinjuzgadotfg.Modelos.Abogado;
+import com.example.aplicacinjuzgadotfg.R;
+import com.example.aplicacinjuzgadotfg.Modelos.Sentencia;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 

@@ -1,4 +1,4 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Modelos;
 
 public class Imputado {
     private String idImputado;

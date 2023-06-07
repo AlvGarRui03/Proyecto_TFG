@@ -1,4 +1,4 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.aplicacinjuzgadotfg.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -55,10 +56,11 @@ public class CodeSelectionActivity extends AppCompatActivity {
     public void seleccionPersonas() {
         Intent intent = new Intent(this, PeopleSelectionActivity.class);
         idJuicio= codigoJuicio.getText().toString();
-        if (idJuicio.trim().length() > 0) {
+        if (idJuicio.trim().length() > 0 || idJuicio != null) {
             if(listaidJueces.contains(idJuicio.trim().toLowerCase(Locale.ROOT))){
                 Toast.makeText(this, "El código de juicio ya existe, elija otro código", Toast.LENGTH_SHORT).show();
             }else{
+
                 intent.putExtra("idJuicio", idJuicio);
                 startActivity(intent);
             }

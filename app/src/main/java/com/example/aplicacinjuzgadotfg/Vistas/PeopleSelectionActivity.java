@@ -1,4 +1,4 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.aplicacinjuzgadotfg.Modelos.Abogado;
+import com.example.aplicacinjuzgadotfg.Modelos.Imputado;
+import com.example.aplicacinjuzgadotfg.Modelos.Juez;
+import com.example.aplicacinjuzgadotfg.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -218,6 +222,9 @@ public class PeopleSelectionActivity extends AppCompatActivity {
         intent.putExtra("Abogado", abogadoSeleccionado);
         intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
+    }
+    public void volverAtras(View view) {
+        onBackPressed();
     }
 }
 

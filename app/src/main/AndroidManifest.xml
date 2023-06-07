@@ -16,84 +16,84 @@
         android:theme="@style/Theme.AplicaciónJuzgadoTFG"
         tools:targetApi="31">
         <activity
-            android:name=".DatosExtendidosActivity"
+            android:name=".Vistas.DatosExtendidosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SeleccionPruebasActivity"
+            android:name=".Vistas.SeleccionPruebasActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".FinalActivity"
+            android:name=".Vistas.FinalActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".JudgmentActivity"
+            android:name=".Vistas.JudgmentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PersonActivity"
+            android:name=".Vistas.PersonActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ListActivity"
+            android:name=".Vistas.ListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PeopleSelectionActivity"
+            android:name=".Vistas.PeopleSelectionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CodeSelectionActivity"
+            android:name=".Vistas.CodeSelectionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AbogadoActivity"
+            android:name=".Vistas.AbogadoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ImputadoActivity"
+            android:name=".Vistas.ImputadoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".JuezActivity"
+            android:name=".Vistas.JuezActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Vistas.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

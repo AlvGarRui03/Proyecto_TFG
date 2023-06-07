@@ -1,8 +1,10 @@
-package com.example.aplicacinjuzgadotfg;
+package com.example.aplicacinjuzgadotfg.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.aplicacinjuzgadotfg.R;
 
 public class PersonActivity extends AppCompatActivity {
 
