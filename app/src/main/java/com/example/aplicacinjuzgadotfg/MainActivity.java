@@ -7,7 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -26,15 +35,25 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+
     }
 
     /**
      * Método que se ejecuta al pulsar el botón de crear juicio, se encarga de cargar la actividad
      * de selección de código de juicio
+     *
      * @param view recibe como parámetro la vista
      */
-    public void crearJuicio(View view){
+    public void crearJuicio(View view) {
         Intent intent = new Intent(this, CodeSelectionActivity.class);
         startActivity(intent);
     }
+
+    public void verJuicios(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+    }
+
+
+
 }

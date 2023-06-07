@@ -26,6 +26,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
     private String juezSeleccionado;
     private String imputadoSeleccionado;
     private String abogadoSeleccionado;
+    private String idJuicio;
     Spinner listaJueces;
     Spinner listaImputados;
     Spinner listaAbogados;
@@ -40,6 +41,8 @@ public class PeopleSelectionActivity extends AppCompatActivity {
         listaJueces = (Spinner) findViewById(R.id.Spinner_Jueces);
         listaImputados = (Spinner) findViewById(R.id.Spinner_Imputados);
         listaAbogados = (Spinner) findViewById(R.id.Spinner_Abogado);
+        idJuicio = getIntent().getStringExtra("idJuicio");
+        Log.e("TAG", "onCreate: " + idJuicio + "ESTA?");
         nombresJueces = new ArrayList<>();
         nombresImputados = new ArrayList<>();
         nombresAbogados = new ArrayList<>();
@@ -71,9 +74,9 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                             for (DocumentSnapshot d : list) {
                                 Log.e("TAG", "onSuccess: " + d.getId() + " => " + d.getData());
                                 System.out.println(d.getString("Nombre"));
-                                Juez juez = new Juez(d.getId(), d.getString("Nombre"), d.getString("DNI"));
+                                Juez juez = new Juez(d.getString("idJuez"), d.getString("Nombre"), d.getString("DNI"));
                                 System.out.println("ID: " + juez.getIdJuez() + " Nombre: " + juez.getNombreCompleto() + " DNI: " + juez.getDni());
-                                nombresJueces.add(juez.getNombreCompleto());
+                                nombresJueces.add(juez.getIdJuez() +": "+juez.getNombreCompleto());
                             }
                         } else {
                             // if the snapshot is empty we are displaying a toast message.
@@ -112,9 +115,9 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                             for (DocumentSnapshot d : list) {
                                 Log.e("TAG", "onSuccess: " + d.getId() + " => " + d.getData());
                                 System.out.println(d.getString("Nombre"));
-                                Imputado imputado = new Imputado(d.getId(), d.getString("Nombre"), d.getString("DNI"));
+                                Imputado imputado = new Imputado(d.getString("IdImputado"), d.getString("Nombre"), d.getString("DNI"));
                                 System.out.println("ID: " + imputado.getIdImputado() + " Nombre: " + imputado.getNombreCompleto() + " DNI: " + imputado.getDni());
-                                nombresImputados.add(imputado.getNombreCompleto());
+                                nombresImputados.add(imputado.getIdImputado() + ": " + imputado.getNombreCompleto());
 
 
                             }
@@ -153,9 +156,9 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                             for (DocumentSnapshot d : list) {
                                 Log.e("TAG", "onSuccess: " + d.getId() + " => " + d.getData());
                                 System.out.println(d.getString("Nombre"));
-                                Abogado abogado = new Abogado(d.getId(), d.getString("Nombre"), d.getString("Tipo"), d.getString("DNI"));
+                                Abogado abogado = new Abogado(d.getString("IdAbogado"), d.getString("Nombre"), d.getString("Tipo"), d.getString("DNI"));
                                 System.out.println("ID: " + abogado.getIdAbogado() + " Nombre: " + abogado.getNombre() + " DNI: " + abogado.getDni() + " Tipo: " + abogado.getTipo());
-                                nombresAbogados.add(abogado.getNombre());
+                                nombresAbogados.add(abogado.getIdAbogado() + ": " + abogado.getNombre());
                             }
                         } else {
                             Log.e("TAG", "onSuccess: LIST EMPTY");
@@ -195,7 +198,12 @@ public class PeopleSelectionActivity extends AppCompatActivity {
     }
 
     public void crearConjuntoPersonas(View view) {
+        System.out.println("Juez: " + juezSeleccionado + " Imputado: " + imputadoSeleccionado + " Abogado: " + abogadoSeleccionado);
         Intent intent = new Intent(this, SeleccionPruebasActivity.class);
+        intent.putExtra("Juez", juezSeleccionado);
+        intent.putExtra("Imputado", imputadoSeleccionado);
+        intent.putExtra("Abogado", abogadoSeleccionado);
+        intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
     }
 }

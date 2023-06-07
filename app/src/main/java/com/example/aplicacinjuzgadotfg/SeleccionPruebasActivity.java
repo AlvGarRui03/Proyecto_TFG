@@ -5,7 +5,6 @@ package com.example.aplicacinjuzgadotfg;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,12 +12,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -28,6 +27,11 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
     private TextView nombrePrueba;
     private ImageView imagenPrueba;
     private StorageReference storageRef;
+    private String imagen;
+    private String idJuicio;
+    private String juez;
+    private String imputado;
+    private String abogado;
     Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,15 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
         nombrePrueba = (TextView) findViewById(R.id.TxT_ArchivoPrueba);
         imagenPrueba = (ImageView) findViewById(R.id.IV_imagenPruebas);
         storageRef = FirebaseStorage.getInstance().getReference();
+        idJuicio = getIntent().getStringExtra("idJuicio");
+        juez = getIntent().getStringExtra("Juez");
+        imputado = getIntent().getStringExtra("Imputado");
+        abogado = getIntent().getStringExtra("Abogado");
+        Log.e("idJuicio", idJuicio + "ESTA?");
+        Log.e("juez", juez + "ESTA?");
+        Log.e("imputado", imputado + "ESTA?");
+        Log.e("abogado", abogado + "ESTA?");
+
     }
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -60,11 +73,20 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
         someActivityResultLauncher.launch(intentChooser);
     }
     public void subirPrueba(View view){
-        storageRef.child("pruebas").child(uri.getLastPathSegment()).putFile(uri);
-        nombrePrueba.setText(uri.getLastPathSegment());
-        Intent intent = new Intent(this, JudgmentActivity.class);
-        startActivity(intent);
-        intent.putExtra("nombrePrueba", nombrePrueba.getText().toString());
 
+        if(uri!=null) {
+            storageRef.child("pruebas").child(uri.getLastPathSegment()).putFile(uri);
+            imagen = uri.getLastPathSegment();
+            Log.e("imagen", imagen);
+            Intent intent = new Intent(this, JudgmentActivity.class);
+            intent.putExtra("imagen", imagen);
+            intent.putExtra("Juez", juez);
+            intent.putExtra("Imputado", imputado);
+            intent.putExtra("Abogado", abogado);
+            intent.putExtra("idJuicio",idJuicio);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Debe seleccionar una prueba", Toast.LENGTH_SHORT).show();
+        }
     }
 }
