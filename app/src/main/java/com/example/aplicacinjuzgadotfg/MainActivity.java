@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Desactivar modo nocturno
         int nightModeFlags = contexto.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de ver juicios, se encarga de cargar la actividad
+     * @param view
+     */
     public void verJuicios(View view) {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);

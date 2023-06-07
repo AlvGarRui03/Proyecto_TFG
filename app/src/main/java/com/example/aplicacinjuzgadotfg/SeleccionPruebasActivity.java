@@ -24,7 +24,6 @@ import com.google.firebase.storage.StorageReference;
 
 
 public class SeleccionPruebasActivity<result> extends AppCompatActivity {
-    private TextView nombrePrueba;
     private ImageView imagenPrueba;
     private StorageReference storageRef;
     private String imagen;
@@ -37,47 +36,60 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_pruebas);
-        nombrePrueba = (TextView) findViewById(R.id.TxT_ArchivoPrueba);
         imagenPrueba = (ImageView) findViewById(R.id.IV_imagenPruebas);
         storageRef = FirebaseStorage.getInstance().getReference();
         idJuicio = getIntent().getStringExtra("idJuicio");
         juez = getIntent().getStringExtra("Juez");
         imputado = getIntent().getStringExtra("Imputado");
         abogado = getIntent().getStringExtra("Abogado");
-        Log.e("idJuicio", idJuicio + "ESTA?");
-        Log.e("juez", juez + "ESTA?");
-        Log.e("imputado", imputado + "ESTA?");
-        Log.e("abogado", abogado + "ESTA?");
+
 
     }
+    /**
+     * Metodo que obtiene la seleccion del usuario y la muestra en el imageView
+     * @param view
+     */
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode() == Activity.RESULT_OK){
+                        //Obtenemos el resultado de la seleccion
                         Intent data = result.getData();
+                        //Obtenemos la uri de la imagen seleccionada
                          uri = data.getData();
-                        imagenPrueba.setImageURI(uri);
+                        //Mostramos la imagen en el imageView
+                         imagenPrueba.setImageURI(uri);
 
 
                     }
                 }
             }
     );
-
+    /**
+     * Metodo que abre el chooser para que el usuario seleccione una imagen
+     * @param view
+     */
     public void abrirChooser(View view){
         Intent intentChooser = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        //Limitamos la seleccion a imagenes
         intentChooser.setType("image/*");
+        //Creamos el chooser
         intentChooser.createChooser(intentChooser, "Selecciona un archivo");
         someActivityResultLauncher.launch(intentChooser);
     }
+    /**
+     * Metodo que sube la imagen seleccionada al almacenamiento de Firebase y carga la siguiente actividad
+     * @param view
+     */
     public void subirPrueba(View view){
-
+        //Comprobamos que el usuario ha seleccionado una imagen
         if(uri!=null) {
+            //Subimos la imagen al almacenamiento de Firebase
             storageRef.child("pruebas").child(uri.getLastPathSegment()).putFile(uri);
+            //Obtenemos el nombre de la imagen
             imagen = uri.getLastPathSegment();
-            Log.e("imagen", imagen);
             Intent intent = new Intent(this, JudgmentActivity.class);
             intent.putExtra("imagen", imagen);
             intent.putExtra("Juez", juez);

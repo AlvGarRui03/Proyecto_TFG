@@ -142,7 +142,7 @@
         android:id="@+id/textView25"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Descripción"
+        android:text="Breve Descripción"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"

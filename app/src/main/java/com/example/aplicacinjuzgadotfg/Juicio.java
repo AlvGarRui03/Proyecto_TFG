@@ -26,9 +26,9 @@ public class Juicio {
         this.fecha = fecha;
     }
 
-    public Juicio(){
+    /*public Juicio(){
         fecha = Calendar.getInstance().getTime().toString();
-    }
+    }*/
     public String getIdJuicio() {
         return idJuicio;
     }

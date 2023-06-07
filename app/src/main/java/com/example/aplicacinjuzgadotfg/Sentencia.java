@@ -5,6 +5,14 @@ public class Sentencia {
     private String tipo;
     private String descripcion;
 
+
+    public Sentencia(String idSentencia, String tipo, String descripcion) {
+        this.idSentencia = idSentencia;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+
+    }
+
     public String getIdSentencia() {
         return idSentencia;
     }
@@ -28,4 +36,5 @@ public class Sentencia {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 }

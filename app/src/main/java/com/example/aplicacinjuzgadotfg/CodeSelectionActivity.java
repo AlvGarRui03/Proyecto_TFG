@@ -35,6 +35,7 @@ public class CodeSelectionActivity extends AppCompatActivity {
         listaidJueces = new ArrayList<>();
         botonPersonas = findViewById(R.id.BT_ContinuarPersonas);
         codigoJuicio = findViewById(R.id.TxT_CodJuicio);
+        //Se crea el listener del botón de continuar
         botonPersonas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,9 @@ public class CodeSelectionActivity extends AppCompatActivity {
 
 
     }
-
+    /**
+     * Método que se encarga de buscar los códigos de juicio que existen en la base de datos
+     */
     public void buscaridJuicios() {
         db = FirebaseFirestore.getInstance();
         db.collection("/Juicios").get()

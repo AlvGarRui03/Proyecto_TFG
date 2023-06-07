@@ -39,7 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Aplicación de Juzgado"
+        android:text="Juzgado de Granada"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +48,7 @@ public class JudgmentActivity extends AppCompatActivity {
     private CheckBox CB_recurso;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,21 +65,14 @@ public class JudgmentActivity extends AppCompatActivity {
         imputado = getIntent().getStringExtra("Imputado");
         abogado = getIntent().getStringExtra("Abogado");
         imagen = getIntent().getStringExtra("imagen");
-        Log.e("idJuicio", idJuicio + "ESTA?");
-        Log.e("Juez", juez + "ESTA?");
-        Log.e("Imputado", imputado + "ESTA?");
-        Log.e("Abogado", abogado + "ESTA?");
-        Log.e("imagen", imagen + "ESTA?");
-
-
     }
 
     public void ultimaActividad(View view) {
-        Log.e("TAG", "ultimaActividad: " + tipoSentenciaSeleccionada);
+        //Comprobamos que el checkbox esta seleccionado o no
         recurso = CB_recurso.isChecked();
         descripcion = ET_descripcion.getText().toString();
-        if (descripcion.trim().length() == 0 || descripcion.length() > 200) {
-            Toast.makeText(this, "La descripcion debe ser mayor de 0 y menor de 200 caracteres", Toast.LENGTH_SHORT).show();
+        if (descripcion.trim().length() == 0 || descripcion.length() > 80) {
+            Toast.makeText(this, "La descripcion debe ser mayor de 0 y menor de 80 caracteres", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, FinalActivity.class);
             creacionSentencia();
@@ -87,11 +82,16 @@ public class JudgmentActivity extends AppCompatActivity {
             intent.putExtra("Abogado", abogado);
             intent.putExtra("idJuicio", idJuicio);
             intent.putExtra("numeroSentencia", String.valueOf(numeroSentencia));
+            intent.putExtra("descripcion", descripcion);
+            intent.putExtra("recurso",recurso);
+            intent.putExtra("tipoSentencia", tipoSentenciaSeleccionada);
             startActivity(intent);
         }
 
     }
-
+    /**
+     * Metodo que busca los tipos sentencia en la base de datos
+     */
     public void buscarTiposSentencias() {
         db = FirebaseFirestore.getInstance();
         db.collection("/Tipo_Sentencia").orderBy("Tipo").get()
@@ -100,16 +100,16 @@ public class JudgmentActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Log.e("TAG", "onSuccess:");
                         if (!queryDocumentSnapshots.isEmpty()) {
-                            Log.e("TAG", "onSuccess: " + queryDocumentSnapshots.size());
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
-                                Log.e("TAG", "onSuccess: " + d.getId() + " => " + d.getData());
                                 tipoSentenciaList.add(d.getString("Tipo"));
                             }
                         } else {
+                            // Error si la lista esta vacia
                             Log.e("TAG", "onSuccess: LIST EMPTY");
                             System.out.println("No data found in Database");
                         }
+                        //Obtenemos el tipo de sentencia seleccionado
                         tipoSentencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -123,11 +123,16 @@ public class JudgmentActivity extends AppCompatActivity {
                             }
 
                         });
+                        //Notificamos al adapter que se ha realizado un cambio en la lista
                         adapterTipoSentencia.notifyDataSetChanged();
                     }
                 });
+        //Incrementamos el id de la sentencia
         autoincrementSentencia();
     }
+    /**
+     * Metodo que obtiene el ultimo id de sentencia y lo incrementa en 1
+     */
     public void autoincrementSentencia() {
         db.collection("/Sentencias").orderBy("idSentencia", Query.Direction.ASCENDING).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -138,11 +143,10 @@ public class JudgmentActivity extends AppCompatActivity {
                             Log.e("TAG", "onSuccess: " + queryDocumentSnapshots.size());
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
-                                Log.e("TAG", "onSuccess: " + d.getId() + " => " + d.getData());
-                                Log.e("TAG",d.getLong("idSentencia").toString() + d.getString("Tipo") + d.getString("Descripcion") + d.getBoolean("PosibilidadRecurso"));
                                 numeroSentencia = d.getLong("idSentencia").intValue() + 1;
                             }
                         } else {
+                            // Error si la lista esta vacia
                             Log.e("TAG", "onSuccess: LIST EMPTY");
                             System.out.println("No data found in Database");
                         }
@@ -152,6 +156,9 @@ public class JudgmentActivity extends AppCompatActivity {
 
 
     }
+    /**
+     * Metodo que crea la sentencia en la base de datos
+     */
     public void creacionSentencia() {
         Map<String, Object> sentencia = new HashMap<>();
         sentencia.put("idSentencia", numeroSentencia);

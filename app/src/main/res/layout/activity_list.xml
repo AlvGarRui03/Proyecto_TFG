@@ -34,27 +34,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="111dp"
-        android:layout_height="47dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline46"
-        app:layout_constraintEnd_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/BT_BuscarJuicio"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Busqueda"
-        app:layout_constraintBottom_toTopOf="@+id/guideline46"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_listaJuicio"
         android:layout_width="380dp"
@@ -63,7 +42,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/BT_BuscarJuicio" />
+        app:layout_constraintTop_toTopOf="@+id/guideline47" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -97,14 +76,15 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.21" />
 
-    <TextView
-        android:id="@+id/textView24"
+    <SearchView
+        android:id="@+id/busquedaIdJuicio"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Código       Juez       Imputado      Abogado     Fecha"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/RV_listaJuicio"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline46"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="@+id/guideline46" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:queryHint="Buscar por ID"
+        app:iconifiedByDefault="false"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
