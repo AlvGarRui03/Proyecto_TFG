@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+
 public class DatosExtendidosActivity extends AppCompatActivity {
     private String idJuicio = " ";
     private TextView Titulo;
@@ -63,6 +64,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
 
 
     }
+
     /**
      * Metodo que busca los datos asociados al juicio
      */
@@ -101,6 +103,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Metodo que busca el juez asociado al juicio
      */
@@ -135,6 +138,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
         }, 2000);
 
     }
+
     /**
      * Metodo que busca el imputado asociado al juicio
      */
@@ -164,6 +168,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
         }, 2000);
 
     }
+
     /**
      * Metodo que busca el abogado asociado al juicio
      */
@@ -192,7 +197,8 @@ public class DatosExtendidosActivity extends AppCompatActivity {
         }, 2000);
 
     }
-     /**
+
+    /**
      * Metodo pone los datos del juicio
      */
     public void ponerDatos() {
@@ -208,6 +214,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
             }
         }, 6000);
     }
+
     /**
      * Metodo que busca la prueba asociada al juicio y la añade a la ImageView
      */
@@ -245,6 +252,7 @@ public class DatosExtendidosActivity extends AppCompatActivity {
                 , 4000);
 
     }
+
     /**
      * Metodo que busca la sentencia asociada al juicio
      */
@@ -278,7 +286,8 @@ public class DatosExtendidosActivity extends AppCompatActivity {
 
     /**
      * Metodo que vuelve a la actividad anterior
-     * @param view
+     *
+     * @param view the view
      */
     public void volverActividadAnterior(View view){
         onBackPressed();

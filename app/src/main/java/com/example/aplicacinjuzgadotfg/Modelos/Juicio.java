@@ -2,6 +2,7 @@ package com.example.aplicacinjuzgadotfg.Modelos;
 
 import java.util.Calendar;
 
+
 public class Juicio {
     private String idJuicio;
     private String nombreJuez;
@@ -13,6 +14,8 @@ public class Juicio {
     private String sentencia;
     private String pruebas;
     private String fecha;
+
+
     public Juicio(String idJuicio, String nombreJuez, String codigoJuez, String nombreImputado, String codigoImputado, String nombreAbogado, String codigoAbogado, String sentencia, String pruebas, String fecha) {
         this.idJuicio = idJuicio;
         this.nombreJuez = nombreJuez;
@@ -26,7 +29,8 @@ public class Juicio {
         this.fecha = fecha;
     }
 
-    /*public Juicio(){
+
+/*public Juicio(){
         fecha = Calendar.getInstance().getTime().toString();
     }*/
     public String getIdJuicio() {
@@ -37,6 +41,7 @@ public class Juicio {
         this.idJuicio = idJuicio;
     }
 
+
     public String getPruebas() {
         return pruebas;
     }
@@ -45,65 +50,81 @@ public class Juicio {
         this.pruebas = pruebas;
     }
 
+
     public String getFecha() {
         return fecha;
     }
+
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+
     public String getNombreJuez() {
         return nombreJuez;
     }
+
 
     public void setNombreJuez(String nombreJuez) {
         this.nombreJuez = nombreJuez;
     }
 
+
     public String getCodigoJuez() {
         return codigoJuez;
     }
+
 
     public void setCodigoJuez(String codigoJuez) {
         this.codigoJuez = codigoJuez;
     }
 
+
     public String getNombreImputado() {
         return nombreImputado;
     }
+
 
     public void setNombreImputado(String nombreImputado) {
         this.nombreImputado = nombreImputado;
     }
 
+
     public String getCodigoImputado() {
         return codigoImputado;
     }
+
 
     public void setCodigoImputado(String codigoImputado) {
         this.codigoImputado = codigoImputado;
     }
 
+
     public String getNombreAbogado() {
         return nombreAbogado;
     }
+
 
     public void setNombreAbogado(String nombreAbogado) {
         this.nombreAbogado = nombreAbogado;
     }
 
+
     public String getCodigoAbogado() {
         return codigoAbogado;
     }
+
 
     public void setCodigoAbogado(String codigoAbogado) {
         this.codigoAbogado = codigoAbogado;
     }
 
+
     public String getSentencia() {
         return sentencia;
     }
+
 
     public void setSentencia(String sentencia) {
         this.sentencia = sentencia;

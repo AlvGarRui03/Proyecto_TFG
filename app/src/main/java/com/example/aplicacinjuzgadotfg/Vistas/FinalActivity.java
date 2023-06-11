@@ -40,13 +40,15 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+
 public class FinalActivity extends AppCompatActivity {
     private String encabezadoPDF = "Documento oficial emitido por el juzgado de Granada";
     private String cuerpoPDF="Granada, a "+ ( new SimpleDateFormat("EEEE d 'de' MMMM 'de' yyyy", new Locale("es","ES")).format(Calendar.getInstance().getTime()) + ".\n");
     private String piePDF="";
     private String firmante="";
     private File file;
-    private String idJuicio=" ";
+    private String idJuicio="";
     private String Juez=" ";
     private String Imputado=" ";
     private String Abogado=" ";
@@ -72,6 +74,7 @@ public class FinalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
         idJuicio = getIntent().getStringExtra("idJuicio");
+        Log.e(TAG, "idJuicio: Final" + idJuicio);
             Juez = getIntent().getStringExtra("Juez");
             Imputado = getIntent().getStringExtra("Imputado");
             Abogado = getIntent().getStringExtra("Abogado");
@@ -145,7 +148,8 @@ public class FinalActivity extends AppCompatActivity {
 
     /**
      * Crea el PDF
-     * @param view
+     *
+     * @param view the view
      */
     public void crearPDF(View view) {
         //Creamos el documento
@@ -226,9 +230,9 @@ public class FinalActivity extends AppCompatActivity {
         //Cerramos el documento
         documentoPDF.close();
     }
+
     /**
      * Creamos el juicio en la base de datos
-     *
      */
     public void crearJuicio(){
         db = FirebaseFirestore.getInstance();
@@ -258,9 +262,11 @@ public class FinalActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Vuelve al inicio
-     * @param view
+     *
+     * @param view the view
      */
     public void volverInicio(View view){
         Intent intent = new Intent(this, MainActivity.class);

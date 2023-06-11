@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.aplicacinjuzgadotfg.R;
-import com.example.aplicacinjuzgadotfg.Vistas.FinalActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -58,16 +57,22 @@ public class JudgmentActivity extends AppCompatActivity {
         CB_recurso = (CheckBox) findViewById(R.id.CB_Recurso);
         adapterTipoSentencia = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipoSentenciaList);
         tipoSentencia.setAdapter(adapterTipoSentencia);
-        ET_descripcion = (TextInputEditText) findViewById(R.id.TxT_Descripción);
+        ET_descripcion = (TextInputEditText) findViewById(R.id.TxT_Descripcion);
         buscarTiposSentencias();
 
         idJuicio = getIntent().getStringExtra("idJuicio");
+        Log.e("idJuicio Sentencias", idJuicio);
         juez = getIntent().getStringExtra("Juez");
         imputado = getIntent().getStringExtra("Imputado");
         abogado = getIntent().getStringExtra("Abogado");
         imagen = getIntent().getStringExtra("imagen");
     }
 
+    /**
+     * Ultima actividad.
+     *
+     * @param view the view
+     */
     public void ultimaActividad(View view) {
         //Comprobamos que el checkbox esta seleccionado o no
         recurso = CB_recurso.isChecked();
@@ -90,6 +95,7 @@ public class JudgmentActivity extends AppCompatActivity {
         }
 
     }
+
     /**
      * Metodo que busca los tipos sentencia en la base de datos
      */
@@ -131,6 +137,7 @@ public class JudgmentActivity extends AppCompatActivity {
         //Incrementamos el id de la sentencia
         autoincrementSentencia();
     }
+
     /**
      * Metodo que obtiene el ultimo id de sentencia y lo incrementa en 1
      */
@@ -157,6 +164,7 @@ public class JudgmentActivity extends AppCompatActivity {
 
 
     }
+
     /**
      * Metodo que crea la sentencia en la base de datos
      */

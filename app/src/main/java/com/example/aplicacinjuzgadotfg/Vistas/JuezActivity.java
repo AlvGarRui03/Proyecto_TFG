@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+
 public class JuezActivity extends AppCompatActivity {
     private String idJuez;
     private String nombre;
@@ -33,19 +34,24 @@ public class JuezActivity extends AppCompatActivity {
     private EditText idJuezText;
     private EditText nombreText;
     private EditText dniText;
+    private String idJuicio ="";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juez);
+        idJuicio = getIntent().getStringExtra("idJuicio");
         idJuezText = findViewById(R.id.TxT_IdAbogado);
         nombreText = findViewById(R.id.TxT_NombreAbogado);
         dniText = findViewById(R.id.TxT_DniAbogado);
         buscarJuez();
     }
+
     /**
      * Método que crea un nuevo juez si se cumplen las condiciones y pasa a la anterior actividad
+     *
+     * @param view the view
      */
     public void creacionJuez(View view){
 
@@ -83,11 +89,13 @@ public class JuezActivity extends AppCompatActivity {
                             }
                         });
                 Intent intent = new Intent(this, PeopleSelectionActivity.class);
+                intent.putExtra("idJuicio", idJuicio);
                 startActivity(intent);
             }
             }
         }
     }
+
     /**
      * Método que busca los jueces en la base de datos
      */

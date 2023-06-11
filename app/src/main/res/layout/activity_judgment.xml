@@ -132,7 +132,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline48">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/TxT_Descripción"
+            android:id="@+id/TxT_Descripcion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAlignment="textStart" />

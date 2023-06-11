@@ -29,11 +29,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+
 public class AbogadoActivity extends AppCompatActivity {
     private ArrayList<String> tiposAbogado;
     private ArrayList<String> codigosAbogados = new ArrayList<String>();
+
     Spinner listaTiposAbogado;
     private FirebaseFirestore db;
+
     ArrayAdapter<String> adapterTipos;
     private String tipoAbogadoSeleccionado = "Abogado de Derecho ambiental";
     private EditText idAbogadoText;
@@ -42,10 +45,12 @@ public class AbogadoActivity extends AppCompatActivity {
     private String idAbogado;
     private String nombreAbogado;
     private String dniAbogado;
+    private String idJuicio="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abogado);
+        idJuicio = getIntent().getStringExtra("idJuicio");
         idAbogadoText = findViewById(R.id.TxT_IdAbogado);
         nombreAbogadoText = findViewById(R.id.TxT_NombreAbogado);
         dniAbogadoText = findViewById(R.id.TxT_DniAbogado);
@@ -92,9 +97,11 @@ public class AbogadoActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Metodo que crea un abogado en la base de datos
-     * @param view
+     *
+     * @param view the view
      */
     public void creacionAbogado(View view){
             idAbogado = idAbogadoText.getText().toString();
@@ -130,6 +137,7 @@ public class AbogadoActivity extends AppCompatActivity {
                                 }
                             });
                     Intent intent = new Intent(this, PeopleSelectionActivity.class);
+                    intent.putExtra("idJuicio", idJuicio);
                     startActivity(intent);
                     }else{
                         Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show();
@@ -137,6 +145,7 @@ public class AbogadoActivity extends AppCompatActivity {
                 }
             }
     }
+
     /**
      * Metodo que busca los abogados en la base de datos para añadirlos al array de codigos de abogados
      */

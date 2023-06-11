@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+
 public class CodeSelectionActivity extends AppCompatActivity {
     private Button botonPersonas;
     private ArrayList<String> listaidJueces;
@@ -50,13 +51,11 @@ public class CodeSelectionActivity extends AppCompatActivity {
     /**
      * Método que se ejecuta al pulsar el botón de continuar, se encarga de cargar la actividad
      * de selección de personas
-     *
-     *
      */
     public void seleccionPersonas() {
         Intent intent = new Intent(this, PeopleSelectionActivity.class);
         idJuicio= codigoJuicio.getText().toString();
-        if (idJuicio.trim().length() > 0 || idJuicio != null) {
+        if (idJuicio.trim().length() > 0 && idJuicio != null) {
             if(listaidJueces.contains(idJuicio.trim().toLowerCase(Locale.ROOT))){
                 Toast.makeText(this, "El código de juicio ya existe, elija otro código", Toast.LENGTH_SHORT).show();
             }else{
@@ -71,6 +70,7 @@ public class CodeSelectionActivity extends AppCompatActivity {
 
 
     }
+
     /**
      * Método que se encarga de buscar los códigos de juicio que existen en la base de datos
      */

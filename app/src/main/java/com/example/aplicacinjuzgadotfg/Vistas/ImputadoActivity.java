@@ -28,12 +28,14 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+
 public class ImputadoActivity extends AppCompatActivity {
     private Context contexto = this;
     private String idImputado;
     private ArrayList<String> codigosImputado = new ArrayList<String>();
     private String nombre;
     private String dni ="";
+    private String idJuicio="";
     private EditText idImputadoText;
     private EditText nombreText;
     private EditText dniText;
@@ -48,14 +50,18 @@ public class ImputadoActivity extends AppCompatActivity {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
         }
+        idJuicio = getIntent().getStringExtra("idJuicio");
         idImputadoText = findViewById(R.id.TxT_IdAbogado);
         nombreText = findViewById(R.id.TxT_NombreAbogado);
         dniText = findViewById(R.id.TxT_DniAbogado);
         buscarImputado();
 
     }
+
     /**
      * Método que añade los imputados a la base de datos y vuelve a la anterior actividad
+     *
+     * @param view the view
      */
     public void crearImputado(View view){
     idImputado = idImputadoText.getText().toString();
@@ -90,6 +96,7 @@ public class ImputadoActivity extends AppCompatActivity {
                                 }
                             });
                     Intent intent = new Intent(this, PeopleSelectionActivity.class);
+                    intent.putExtra("idJuicio", idJuicio);
                     startActivity(intent);
                 }
             }else {
@@ -97,6 +104,7 @@ public class ImputadoActivity extends AppCompatActivity {
             }
         }
     }
+
     /**
      * Método que busca los imputados en la base de datos
      */

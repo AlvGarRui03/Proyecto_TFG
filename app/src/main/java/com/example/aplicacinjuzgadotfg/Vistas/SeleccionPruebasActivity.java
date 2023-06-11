@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
     private ImageView imagenPrueba;
     private StorageReference storageRef;
     private String imagen;
-    private String idJuicio;
+    private String idJuicio=" ";
     private String juez;
     private String imputado;
     private String abogado;
@@ -39,14 +40,17 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
         imagenPrueba = (ImageView) findViewById(R.id.IV_imagenPruebas);
         storageRef = FirebaseStorage.getInstance().getReference();
         idJuicio = getIntent().getStringExtra("idJuicio");
+        Log.e("idJuicio Pruebas", idJuicio);
         juez = getIntent().getStringExtra("Juez");
         imputado = getIntent().getStringExtra("Imputado");
         abogado = getIntent().getStringExtra("Abogado");
 
 
     }
+
     /**
      * Metodo que obtiene la seleccion del usuario y la muestra en el imageView
+     *
      * @param view
      */
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
@@ -67,9 +71,11 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
                 }
             }
     );
+
     /**
      * Metodo que abre el chooser para que el usuario seleccione una imagen
-     * @param view
+     *
+     * @param view the view
      */
     public void abrirChooser(View view){
         Intent intentChooser = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -79,9 +85,11 @@ public class SeleccionPruebasActivity<result> extends AppCompatActivity {
         intentChooser.createChooser(intentChooser, "Selecciona un archivo");
         someActivityResultLauncher.launch(intentChooser);
     }
+
     /**
      * Metodo que sube la imagen seleccionada al almacenamiento de Firebase y carga la siguiente actividad
-     * @param view
+     *
+     * @param view the view
      */
     public void subirPrueba(View view){
         //Comprobamos que el usuario ha seleccionado una imagen

@@ -13,6 +13,7 @@ import com.example.aplicacinjuzgadotfg.R;
 import com.example.aplicacinjuzgadotfg.Vistas.CodeSelectionActivity;
 import com.example.aplicacinjuzgadotfg.Vistas.ListActivity;
 
+
 public class MainActivity extends AppCompatActivity {
     /**
      * Clase principal de la aplicación, se encarga de cargar el layout de la pantalla principal
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Método que se ejecuta al pulsar el botón de ver juicios, se encarga de cargar la actividad
-     * @param view
+     *
+     * @param view the view
      */
     public void verJuicios(View view) {
         Intent intent = new Intent(this, ListActivity.class);

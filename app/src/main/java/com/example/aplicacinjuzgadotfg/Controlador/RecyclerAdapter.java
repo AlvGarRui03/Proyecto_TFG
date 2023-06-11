@@ -17,11 +17,19 @@ import com.example.aplicacinjuzgadotfg.R;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder> implements Filterable, View.OnClickListener{
     private List<Juicio> listadoJuicios;
     private Activity activity;
     private List<Juicio> todosJuicios;
     private View.OnClickListener listener;
+
+    /**
+     * Constructor RecyclerAdapter
+     *
+     * @param listadoJuicios the listado juicios
+     * @param activity       the activity
+     */
     public RecyclerAdapter(List<Juicio> listadoJuicios, Activity activity) {
         this.listadoJuicios = listadoJuicios;
         this.activity=activity;
@@ -114,7 +122,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         };
         return filtro;
     }
-    //Metodo que nos permite asignar un listener al adaptador
+
+    /**
+     * Metodo que nos permite asignar un listener al adaptador
+     *
+     * @param listener the listener
+     */
+
     public void setOnClickListener(View.OnClickListener listener){
         this.listener=listener;
     }
@@ -124,8 +138,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onClick(View v) {
         if(listener!=null){
                 listener.onClick(v);
-
-
         }
     }
 
@@ -133,10 +145,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
      * Clase que nos permite crear el Holder
      */
     public class RecyclerHolder extends RecyclerView.ViewHolder {
+
         TextView Id_Juicio;
+
         TextView nombreJuez;
+
         TextView nombreImputado;
+
         TextView nombreAbogado;
+
         TextView fecha;
 
         public RecyclerHolder(@NonNull View itemView) {

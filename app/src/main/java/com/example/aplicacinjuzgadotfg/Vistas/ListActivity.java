@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private RecyclerView listaJuicios;
     private ArrayList<Juicio> datosLista;
@@ -65,7 +66,8 @@ public class ListActivity extends AppCompatActivity implements SearchView.OnQuer
 
     /**
      * Método que devuelve la lista de juicios
-     * @return
+     *
+     * @return list
      */
     public List devolverLista() {
         return datosLista;
@@ -77,6 +79,7 @@ public class ListActivity extends AppCompatActivity implements SearchView.OnQuer
     public void actualizarLista() {
         recAdapter.notifyDataSetChanged();
     }
+
     /**
      * Método que busca todos los juicios en la base de datos
      */

@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PeopleSelectionActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<String> nombresJueces;
@@ -67,6 +68,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
         buscarImputados();
         buscarAbogados();
     }
+
     /**
      * Metodo encargado de buscar los jueces en la base de datos
      */
@@ -107,6 +109,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
 
                 });
     }
+
     /**
      * Metodo encargado de buscar los Imputados en la base de datos
      */
@@ -147,6 +150,7 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Metodo encargado de buscar los abogados en la base de datos
      */
@@ -186,34 +190,44 @@ public class PeopleSelectionActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Metodo encargado de enviar a la actividad de creacion de juez
-     * @param view
+     *
+     * @param view the view
      */
     public void crearJuez(View view) {
         Intent intent = new Intent(this, JuezActivity.class);
+        intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
     }
+
     /**
      * Metodo encargado de enviar a la actividad de creacion de imputado
-     * @param view
+     *
+     * @param view the view
      */
     public void crearImputado(View view) {
         Intent intent = new Intent(this, ImputadoActivity.class);
+        intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
     }
+
     /**
      * Metodo encargado de enviar a la actividad de creacion de abogado
-     * @param view
+     *
+     * @param view the view
      */
     public void crearAbogado(View view) {
         Intent intent = new Intent(this, AbogadoActivity.class);
+        intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
     }
 
     /**
      * Metodo encargado de guardar los datos del conjunto de personas y enviar a la actividad de seleccion de pruebas
-     * @param view
+     *
+     * @param view the view
      */
     public void crearConjuntoPersonas(View view) {
         Intent intent = new Intent(this, SeleccionPruebasActivity.class);
@@ -223,6 +237,12 @@ public class PeopleSelectionActivity extends AppCompatActivity {
         intent.putExtra("idJuicio",idJuicio);
         startActivity(intent);
     }
+
+    /**
+     * Volver atras.
+     *
+     * @param view the view
+     */
     public void volverAtras(View view) {
         onBackPressed();
     }
